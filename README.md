@@ -2,6 +2,12 @@
 This space is for the Data Science Project as part of PDA Data Science SCQF Level 8.
 
 ## How To's
+### Learning Git
+Git can be as simple or as difficult as any other technology. The difficulty increases when you start collaborating. Here are tools to help in those troublesome times.
+- [Interactive Git Branch Game to learn how to branch effectively](https://learngitbranching.js.org/)
+- [A visual game to learn git](https://ohmygit.org/)
+- [The Git cheat sheet](https://training.github.com/downloads/github-git-cheat-sheet/)
+
 ### GitHub Desktop
 GitHub Desktop is a visually appealing GUI client for managing git repositories in your GitHub.
 - [How to set up GitHub Desktop Client](https://www.youtube.com/watch?v=PvUexC0-D2s)
