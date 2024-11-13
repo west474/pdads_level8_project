@@ -256,14 +256,14 @@ if __name__ == "__main__":
     duplicates = duplicates.sort_values('id')
     
     
-    
     test_duplicates = duplicates.drop_duplicates()
+    test_duplicates_2 = duplicates.drop_duplicates(subset = "id")
         
    
     
     
     
-    
+ #%%   
     
 
 
