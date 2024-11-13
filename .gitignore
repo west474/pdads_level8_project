@@ -3,6 +3,9 @@
 Data_life_cycle.drawio
 .~lock.games.csv\#
 
+*Meeting*
+*.download
+*.html
 
 # Ignore configuration, backup, and report files
 *.ini

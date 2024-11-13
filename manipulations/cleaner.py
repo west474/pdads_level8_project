@@ -53,7 +53,7 @@ Review of variables:
     
     at the lower levels of chess but rather does the opening itself perform well. 
     
-    I believe that by removing having only one game per player we help to insulate our prime variable:
+    I believe that by having only one game per player we help to insulate our prime variable:
         
         opening, from unwanted influences of the player variable.
 
@@ -127,7 +127,7 @@ def remove_draws(chess_data):
     
     
     # This removes remaining draws from the data
-    no_draws = chess_data[chess_data["winner"]!="draw"]
+    #no_draws = chess_data[chess_data["winner"]!="draw"]
     
     
     return no_draws
