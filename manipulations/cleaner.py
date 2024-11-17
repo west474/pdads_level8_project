@@ -25,9 +25,9 @@ stage A: load data
 Review of variables:
 
 
-    let's keep the id variable so that we know we are dealing with distinct individuals.
+    let's keep the id variable so that we know we are dealing with distinct games.
     
-    First lets check if our players are unique:
+    First lets check if our games are unique:
         
         
         sources:
@@ -40,9 +40,20 @@ Review of variables:
     
     Stage B: Remove duplicate ids:
         
-    The players are not unique so let's select only the first game that each player appears in. 
+    The games are not unique so let's select only the first game from duplicated games. 
+    
+    
+    
+    
+    
+    
+    
+    
+    ------------------------------------------------------------------------------------
     
     The thinking behind this is that any given player may have lurking/hidden attributes that could account for elevated performance. 
+    
+    
     
     If we have many games by a player who has say a great coach, and just happens to play an obscure oppening,
     
@@ -61,7 +72,7 @@ Review of variables:
 """
 
 
-def check_that_our_ids_are_unique(chess_data):
+def check_that_our_ids_are_unique(chess_data, DEBUG = True):
     
     duplicated_ids = chess_data['id'].duplicated().any()
     
@@ -71,14 +82,15 @@ def check_that_our_ids_are_unique(chess_data):
 
     num_duplicate_ids = num_players - num_players_without_duplication
     
-    
-    if duplicated_ids == True:
+    if DEBUG:
         
-        print(f"\nthere are {num_duplicate_ids} duplicated id's in our data set.")
-        
-    else:
-        
-        print("\nthere are NO duplicated id's in our data set.")
+        if duplicated_ids == True:
+            
+            print(f"\nthere are {num_duplicate_ids} duplicated id's in our data set.")
+            
+        else:
+            
+            print("\nthere are NO duplicated id's in our data set.")
         
         
 def select_first_game_in_data_from_each_id(chess_data):
@@ -119,15 +131,23 @@ def convert_unix_time_to_timestamps(chess_data, columns: tuple):
 
 
 
-def remove_draws(chess_data):
+def remove_draws(chess_data, does_remove_all_draws = True):
     
-    
-    # this still leaves some draws. See below for explanation
-    no_draws = chess_data[chess_data["victory_status"]!="draw"] 
+    if does_remove_all_draws == False:
+        # this still leaves some draws. See below for explanation
+        
+        no_draws = chess_data[chess_data["victory_status"]!="draw"] 
+        
+        row1 = test_duplicates.loc[18642]
+        row2 = test_duplicates.loc[3882]
+
+        are_rows_equal = row1.equals(row2)
+        
+        print("Are rows 18642 and 3882 identical?", are_rows_equal)
     
     
     # This removes remaining draws from the data
-    #no_draws = chess_data[chess_data["winner"]!="draw"]
+    no_draws = chess_data[chess_data["winner"]!="draw"]
     
     
     return no_draws
@@ -151,11 +171,17 @@ if __name__ == "__main__":
     
     #%% B -- Remove duplicate ids
 
-    check_that_our_ids_are_unique(A_raw_chess_data)
+    check_that_our_ids_are_unique(A_raw_chess_data, DEBUG = True)
+    
+    
+    
+    
+    
+    
     
     B_unique_id_chess_data = select_first_game_in_data_from_each_id(A_raw_chess_data)
     
-    check_that_our_ids_are_unique(B_unique_id_chess_data)
+    check_that_our_ids_are_unique(B_unique_id_chess_data, DEBUG = True)
     
     #%% C -- Remove all non rated games.
     
@@ -244,24 +270,7 @@ if __name__ == "__main__":
     
     """
     
-    
-    
-    #%% mistakes were made
-    
-    # Find duplicates based on 'id' column
-    
-    duplicates = A_raw_chess_data [A_raw_chess_data.duplicated(subset=['id'], keep=False)].copy()
-    
-    # Sort by id to see the duplicates grouped together
-    duplicates = duplicates.sort_values('id')
-    
-    
-    test_duplicates = duplicates.drop_duplicates()
-    test_duplicates_2 = duplicates.drop_duplicates(subset = "id")
-        
-   
-    
-    
+
     
  #%%   
     
@@ -269,8 +278,4 @@ if __name__ == "__main__":
 
 
 
-row1 = test_duplicates.loc[18642]
-row2 = test_duplicates.loc[3882]
 
-are_rows_equal = row1.equals(row2)
-print("Are rows 18642 and 3882 identical?", are_rows_equal)
