@@ -2,6 +2,8 @@ import pandas as pd
 
 from utils.loader import load_raw_data
 
+from utils.jm import dcl
+
 """
 
 Stages of cleaning:
@@ -76,11 +78,11 @@ def check_that_our_ids_are_unique(chess_data, DEBUG = True):
     
     duplicated_ids = chess_data['id'].duplicated().any()
     
-    num_players = len(chess_data['id'])
+    num_games = len(chess_data['id'])
 
-    num_players_without_duplication = len(chess_data['id'].drop_duplicates())
+    num_games_without_duplication = len(chess_data['id'].drop_duplicates())
 
-    num_duplicate_ids = num_players - num_players_without_duplication
+    num_duplicate_ids = num_games - num_games_without_duplication
     
     if DEBUG:
         
@@ -152,7 +154,24 @@ def remove_draws(chess_data, does_remove_all_draws = True):
     
     return no_draws
 
+
+def remove_duplicated_players(chess_data, DEBUG = False):
     
+    if DEBUG:
+        size_of_data = len(chess_data)
+    
+    unique_players = chess_data.drop_duplicates(subset=['white_id'])
+    
+    unique_players = chess_data.drop_duplicates(subset=['black_id'])
+    
+    if DEBUG:
+        size_of_unique_players = len(unique_players)
+        print(f"rows removed by removing duplicated players => {size_of_data - size_of_unique_players}")
+        
+    return unique_players
+        
+
+   
     
     
 
@@ -272,8 +291,54 @@ if __name__ == "__main__":
     
 
     
- #%%   
+    #%% Remove duplicted players
+ 
+   
+    F_unique_players = remove_duplicated_players(E_no_draws, DEBUG= True)
     
+    
+    #%% remove unwanted columns
+    
+    dcl(F_unique_players, DEBUG = False)
+    
+    
+    G_dropped_columns =  F_unique_players[[
+    
+                                                'id',
+                                            
+                                                'rated',
+                                            
+                                               # 'created_at', #dropped
+                                            
+                                               # 'last_move_at', #dropped
+                                            
+                                                'turns',
+                                            
+                                                'victory_status',
+                                            
+                                                'winner',
+                                            
+                                                'increment_code',
+                                            
+                                                'white_id',
+                                            
+                                                'white_rating',
+                                            
+                                                'black_id',
+                                            
+                                                'black_rating',
+                                            
+                                                'moves',
+                                            
+                                                'opening_eco',
+                                            
+                                                'opening_name',
+                                            
+                                                'opening_ply'
+                                                
+                                                
+                                                ]]
+                                        
 
 
 
