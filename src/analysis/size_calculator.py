@@ -1,9 +1,6 @@
 """
-Absolute magnitude (H) is the base brightness value for an object 1AU
-from the Sun and 1AU from the observer and fully illuminated.
-Lower H means brighter object.
-Albedo can be calculated from the absolute magnitude (H) and the diameter (D)
-of the object.
+Diameter is the estimated size of an object based on its absolute magnitude (H) and albedo (p).
+This module provides a function to estimate the diameter of an object.
 """
 import numpy as np
 # estimate the diameter of an object using the absolute magnitude (H) and albedo

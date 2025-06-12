@@ -12,8 +12,8 @@ def test_estimate_diameter_with_real_data():
         (9.18, 0.238, 37.675)  # 1036 Ganymed (A924 UB)
     ]
 
-    # Loop through test cases and check expected diameter is correct
+    # Loop through test cases and check expected diameter is correct.
     for H, p, expected_diameter in test_cases:
         calculated = estimate_diameter(H, p)
         assert np.isclose(calculated, expected_diameter, rtol=0.20), \
-            f"Expected ~{expected_diameter}, but got {calculated} for H={H}, p={p}"  # failure message
+            f"Expected ~{expected_diameter}, but got {calculated} for H={H}, p={p}"

@@ -11,8 +11,8 @@ def test_estimate_magnitude_with_real_data():
         (0.238, 37.675, 9.18)   # 1036 Ganymed (A924 UB)
     ]
 
-    # loop through test cases and check expected albedo is correct
+    # loop through test cases and check expected albedo is correct.
     for p, D, expected_magnitude in test_cases:
         calculated = estimate_magnitude(D, p)
         assert np.isclose(calculated, expected_magnitude, rtol=0.20), \
-            f"Expected ~{expected_magnitude}, but got {calculated} for p={p}, D={D}" # failure message
+            f"Expected ~{expected_magnitude}, but got {calculated} for p={p}, D={D}"

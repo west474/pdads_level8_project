@@ -5,7 +5,7 @@
 - test data cleaning pipeline
 - send cleaned data to ../data/cleaned
 - begin considerations for visualisation steps
-- update gitlab with new project
+
 
 ## Done
 - add albedo calculator
@@ -17,3 +17,5 @@
 - set up folder structure for data cleaning and data visualisation stage
 - turn python ipynb into actual python project with structure
 - add data loader to bring in CSV files
+- added gitignore for pycache directory and files being generated
+- update gitlab with new project

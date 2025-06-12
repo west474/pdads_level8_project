@@ -1,13 +1,14 @@
 """
-Absolute magnitude (H) is the base brightness value for an object 1AU
-from the Sun and 1AU from the observer and fully illuminated.
-Lower H means brighter object.
-Albedo can be calculated from the absolute magnitude (H) and the diameter (D)
-of the object.
+Space objects (NEO in this case) can be classified into spectral types based on the albedo.
+Estimating the albedo can help in determining the spectral type.
+Albedo can be calculated if absolute magnitude (H), and diameter (D) are known.
+This script provides a function to estimate albedo using H and D.
 """
 import numpy as np
-# estimate the albedo of an object using the absolute magnitude (H) and diameter (D)
+
+# estimate the albedo of an object using the absolute magnitude (H) and diameter (D).
 def estimate_albedo(H, diameter):
+
     if H is None or diameter is None:
         return None
     

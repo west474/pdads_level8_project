@@ -1,2 +1,2 @@
-from .loader import save_data, load_data
-from .processor import process_data
+from .loader import data_loading_function, data_saving_function
+from .processor import data_processing_function

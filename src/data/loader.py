@@ -1,15 +1,11 @@
 import pandas as pd
 
-'''
-Author: Richard West
-This module is responsible for loading and saving data.
-It contains functions to read and write CSV files.
-'''
+# loads the data from a CSV file into a pandas DataFrame.
+def data_loading_function(filepath):
+    df = pd.read_csv(filepath, low_memory=False)
+    df = df.dropna(how='all') # remove empty rows from the csv file.
+    return df
 
-# this loads the data from a CSV file into a pandas DataFrame.
-def load_data(filepath):
-    return pd.read_csv(filepath)
-
-# this saves the DataFrame to a CSV file.
-def save_data(data, filepath):
+# saves the DataFrame to a CSV file.
+def data_saving_function(data, filepath):
     data.to_csv(filepath, index=False)
