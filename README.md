@@ -1,11 +1,4 @@
 ## To Do
-- add value calculator
-- test value calculator
-- add data cleaning pipeline
-- test data cleaning pipeline
-- send cleaned data to ../data/cleaned
-- begin considerations for visualisation steps
-
 
 ## Done
 - add albedo calculator
@@ -19,3 +12,9 @@
 - add data loader to bring in CSV files
 - added gitignore for pycache directory and files being generated
 - update gitlab with new project
+- add value calculator
+- test value calculator
+- add data cleaning pipeline
+- test data cleaning pipeline
+- send cleaned data to ../data/cleaned
+- add visualisations
